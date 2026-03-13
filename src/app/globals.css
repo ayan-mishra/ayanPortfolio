@@ -135,11 +135,16 @@ nextjs-dev-indicator,
   display: none !important;
 }
 
-@keyframes marquee {
-  0% {
-    transform: translateX(0);
-  }
-  100% {
-    transform: translateX(-50%);
-  }
+@keyframes ecg {
+  0% { stroke-dashoffset: 900; opacity: 1; }
+  75% { stroke-dashoffset: 0; opacity: 1; }
+  88% { stroke-dashoffset: 0; opacity: 0; }
+  89% { stroke-dashoffset: 900; opacity: 0; }
+  100% { stroke-dashoffset: 900; opacity: 1; }
+}
+
+.ecg-path {
+  stroke-dasharray: 900;
+  stroke-dashoffset: 900;
+  animation: ecg 3s ease-in-out infinite;
 }
