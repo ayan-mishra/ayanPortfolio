@@ -3,7 +3,7 @@
 import { useState } from "react";
 import Image from "next/image";
 import { Fira_Code, Inter } from "next/font/google";
-import VitruvianViz from "@/components/ui/vitruvian-viz";
+import RotatingEarth from "@/components/ui/wireframe-dotted-globe";
 
 const inter = Inter({ subsets: ["latin"] });
 const firaCode = Fira_Code({ weight: "500", subsets: ["latin"] });
@@ -85,10 +85,18 @@ Conclusions: Adults with disability have substantially higher predicted ASCVD ri
   },
 ];
 
+const researchInterests = [
+  "Cardiovascular disease",
+  "Population health",
+  "Clinical risk prediction",
+  "Health disparities",
+  "Preventative medicine and computational biology",
+];
+
 const techCategories = [
   { label: "Data", items: ["Python", "Pandas", "NumPy", "R", "SQL"] },
   { label: "Machine Learning", items: ["PyTorch", "Scikit-learn", "Stable Diffusion", "DenseNet", "Hugging Face"] },
-  { label: "Research Datasets", items: ["NHANES", "YRBS", "Pooled Cohort Equations", "Epidemiology", "Statistical Modeling"] },
+  { label: "Datasets & Methods", items: ["NHANES", "YRBS", "Pooled Cohort Equations", "Epidemiology", "Statistical Modeling"] },
   { label: "Infrastructure", items: ["Next.js", "Node.js", "REST APIs", "Cloud Deployment", "Git"] },
 ];
 
@@ -137,7 +145,7 @@ export default function Home() {
               <p className="text-slate-400 text-base font-light">AI &amp; Biomedical Data Science</p>
             </div>
             <p className="text-slate-400 leading-relaxed max-w-lg">
-              Developing machine learning systems for clinical risk prediction using large-scale health datasets. Research focuses on cardiovascular outcomes in underrepresented populations using NHANES.
+              Investigating cardiovascular risk factors using large-scale clinical and epidemiological datasets.
             </p>
             <div className="flex gap-4 flex-wrap">
               <a
@@ -158,7 +166,7 @@ export default function Home() {
           </div>
 
           <div className="relative h-screen lg:h-[600px] w-full -mr-6 lg:-mr-16">
-            <VitruvianViz />
+            <RotatingEarth width={600} height={600} />
           </div>
         </div>
       </section>
@@ -256,6 +264,23 @@ export default function Home() {
                 </div>
               ))}
             </div>
+          </div>
+        </div>
+      </section>
+
+      <section className="py-16 px-6">
+        <div className="max-w-6xl mx-auto">
+          <p className={`text-blue-400 text-xs uppercase tracking-[0.3em] mb-4 ${firaCode.className}`}>Research Interests</p>
+          <div className="flex flex-wrap gap-3">
+            {researchInterests.map((interest) => (
+              <span
+                key={interest}
+                className={`text-sm px-4 py-2 rounded-full border transition-all duration-200 ${firaCode.className}`}
+                style={{ background: "#0b0f1a", borderColor: "#1e3a8a", color: "#93c5fd" }}
+              >
+                {interest}
+              </span>
+            ))}
           </div>
         </div>
       </section>
