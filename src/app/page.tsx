@@ -495,35 +495,6 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="py-16 px-6">
-        <div className="max-w-6xl mx-auto">
-          <p className={`text-blue-400 text-xs uppercase tracking-[0.3em] mb-8 ${firaCode.className}`}>Research Impact</p>
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-            {[
-              { label: "Primary Dataset", value: "NHANES" },
-              { label: "Study Participants", value: "23,506" },
-              { label: "Primary Domain", value: "Cardiovascular Risk" },
-              { label: "Target Journal", value: "AJPM" },
-            ].map(({ label, value }) => (
-              <div
-                key={label}
-                className="rounded-xl border p-5 text-center transition-all duration-200"
-                style={{ background: "#0b0f1a", borderColor: "#1e3a8a" }}
-                onMouseEnter={(e) => {
-                  (e.currentTarget as HTMLElement).style.borderColor = "#3b82f6";
-                }}
-                onMouseLeave={(e) => {
-                  (e.currentTarget as HTMLElement).style.borderColor = "#1e3a8a";
-                }}
-              >
-                <p className="text-2xl font-semibold text-white">{value}</p>
-                <p className={`text-xs text-slate-500 mt-1 ${firaCode.className}`}>{label}</p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
       <footer className="py-12 px-6 border-t" style={{ borderColor: "#1e3a8a33" }}>
         <div className="max-w-6xl mx-auto flex items-center justify-between flex-wrap gap-4">
           <span className={`text-sm text-slate-600 ${firaCode.className}`}>Ayan Mishra · Computational Health Research</span>
