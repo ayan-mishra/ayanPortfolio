@@ -40,7 +40,6 @@ Conclusions: Adults with disability have substantially higher predicted ASCVD ri
       { label: "Study Population", value: "23,506" },
       { label: "Disability Prevalence", value: "33.7%" },
       { label: "Mean Risk Delta", value: "+7.32%" },
-      { label: "OR (ASCVD ≥7.5%)", value: "2.33" },
     ],
   },
   {
@@ -53,7 +52,7 @@ Conclusions: Adults with disability have substantially higher predicted ASCVD ri
     techStack: ["PyTorch", "Stable Diffusion", "DenseNet", "Python", "Hugging Face"],
     metrics: [
       { label: "Accuracy Gain", value: "+2.2%" },
-      { label: "Synthetic Ratio", value: "50%" },
+      { label: "Best Synthetic Ratio", value: "50%" },
       { label: "Base Accuracy", value: "88%" },
     ],
     downloadOnly: true,
@@ -69,8 +68,8 @@ Conclusions: Adults with disability have substantially higher predicted ASCVD ri
     paperPath: "/HOSAposter.png",
     metrics: [
       { label: "Study Population", value: "45,674" },
-      { label: "Risk Amplification", value: "199%" },
-      { label: "Baseline OR (low PFI)", value: "2.03x" },
+      { label: "SuicideRisk Amplification", value: "199%" },
+      { label: "Baseline Risk at Low Protection", value: "2.03x" },
     ],
     downloadOnly: true,
   },
