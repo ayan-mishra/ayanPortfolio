@@ -101,10 +101,10 @@ const techCategories = [
 ];
 
 const pipelineSteps = [
-  { label: "Dataset Acquisition", detail: "NHANES ingestion" },
+  { label: "Dataset Acquisition", detail: "Finding credible dataset" },
   { label: "Data Cleaning", detail: "Clinical variable extraction" },
   { label: "Feature Engineering", detail: "Risk factor modeling" },
-  { label: "Model Training", detail: "Regression / ML pipeline" },
+  { label: "Model Training", detail: "Regression pipeline" },
   { label: "Validation", detail: "Survey-weighted analysis" },
   { label: "Publication", detail: "Peer review" },
 ];
