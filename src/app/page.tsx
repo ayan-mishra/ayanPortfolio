@@ -201,7 +201,7 @@ export default function Home() {
 
       <section className="py-16 px-6">
         <div className="max-w-6xl mx-auto">
-          <p className={`text-blue-400 text-xs uppercase tracking-[0.3em] mb-8 ${firaCode.className}`}>Primary Research</p>
+          <p className={`text-blue-400 text-xs uppercase tracking-[0.3em] mb-8 ${firaCode.className}`}>Featured Research</p>
           <article
             className="rounded-xl border p-6 sm:p-8 transition-all duration-300 mb-8"
             style={{ background: "#0b0f1a", borderColor: "#1e3a8a" }}
