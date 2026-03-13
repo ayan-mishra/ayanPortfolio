@@ -91,7 +91,6 @@ export default function Home() {
 
   return (
     <main className={`min-h-screen bg-gradient-to-b from-slate-950 via-slate-900 to-slate-950 text-slate-50 ${antic.className}`}>
-      {/* Hero */}
       <section className="relative min-h-screen flex flex-col justify-center px-6 sm:px-10 pb-24">
         <div className="absolute inset-0 pointer-events-none bg-[radial-gradient(circle_at_20%_20%,rgba(56,189,248,0.08),transparent_35%),radial-gradient(circle_at_80%_10%,rgba(99,102,241,0.08),transparent_30%)]" />
         <header className="flex items-center justify-between w-full max-w-6xl mx-auto pt-6">
