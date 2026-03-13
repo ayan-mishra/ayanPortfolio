@@ -157,10 +157,7 @@ export default function Home() {
             </div>
           </div>
 
-          <div
-            className="relative h-[280px] lg:h-[340px] rounded-2xl overflow-hidden border"
-            style={{ background: "#0b0f1a", borderColor: "#1e3a8a55" }}
-          >
+          <div className="relative h-screen lg:h-[600px] w-full -mr-6 lg:-mr-16">
             <VitruvianViz />
           </div>
         </div>

@@ -85,11 +85,9 @@ export default function VitruvianViz() {
   }, []);
 
   return (
-    <div className="relative w-full h-full flex items-center justify-center p-6">
-      <div
-        data-us-project="whwOGlfJ5Rz2rHaEUgHl"
-        style={{ width: '100%', height: '100%' }}
-      />
-    </div>
+    <div
+      data-us-project="whwOGlfJ5Rz2rHaEUgHl"
+      style={{ width: '100%', height: '100%' }}
+    />
   );
 }
