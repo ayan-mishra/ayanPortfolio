@@ -20,6 +20,7 @@ type ResearchItem = {
   category: "research" | "systems";
   dataset?: string;
   metrics?: { label: string; value: string }[];
+  downloadOnly?: boolean;
 };
 
 const researchItems: ResearchItem[] = [
@@ -55,6 +56,7 @@ Conclusions: Adults with disability have substantially higher predicted ASCVD ri
       { label: "Synthetic Ratio", value: "50%" },
       { label: "Base Accuracy", value: "88%" },
     ],
+    downloadOnly: true,
   },
   {
     title: "COVID-19 and Shifted Adolescent Suicide Vulnerability",
@@ -70,6 +72,7 @@ Conclusions: Adults with disability have substantially higher predicted ASCVD ri
       { label: "Risk Amplification", value: "199%" },
       { label: "Baseline OR (low PFI)", value: "2.03x" },
     ],
+    downloadOnly: true,
   },
   {
     title: "Momentum",
@@ -383,38 +386,44 @@ export default function Home() {
                     )}
 
                     {item.paperPath && (
-                      <details className="rounded-lg border border-blue-900/30 px-4 py-3">
-                        <summary className="cursor-pointer text-sm font-medium text-blue-400 list-none flex justify-between items-center">
-                          Full Paper
-                          <span>›</span>
-                        </summary>
-                        <div className="mt-3 space-y-3">
-                          {item.paperPath.endsWith(".pdf") ? (
-                            <div className="w-full aspect-[4/5] rounded-lg overflow-hidden border border-blue-900/30" style={{ background: "#05070f" }}>
-                              <object data={item.paperPath} type="application/pdf" className="w-full h-full">
-                                <p className="p-4 text-sm text-slate-400">
-                                  PDF preview unavailable.{" "}
-                                  <a href={item.paperPath} download className="text-blue-400 underline">Download</a>
-                                </p>
-                              </object>
-                            </div>
-                          ) : (
-                            <div className="relative w-full rounded-lg overflow-hidden border border-blue-900/30 min-h-[320px]" style={{ background: "#05070f" }}>
-                              <Image
-                                src={item.paperPath}
-                                alt={`${item.title} paper`}
-                                fill
-                                sizes="(min-width: 1024px) 800px, 100vw"
-                                className="object-contain"
-                                priority
-                              />
-                            </div>
-                          )}
-                          <a href={item.paperPath} download className="text-sm text-blue-400 underline">
-                            Download file
-                          </a>
-                        </div>
-                      </details>
+                      item.downloadOnly ? (
+                        <a href={item.paperPath} download className="inline-flex items-center gap-2 text-sm text-blue-400 hover:text-blue-300 transition">
+                          Download Full Paper ↓
+                        </a>
+                      ) : (
+                        <details className="rounded-lg border border-blue-900/30 px-4 py-3">
+                          <summary className="cursor-pointer text-sm font-medium text-blue-400 list-none flex justify-between items-center">
+                            Full Paper
+                            <span>›</span>
+                          </summary>
+                          <div className="mt-3 space-y-3">
+                            {item.paperPath.endsWith(".pdf") ? (
+                              <div className="w-full aspect-[4/5] rounded-lg overflow-hidden border border-blue-900/30" style={{ background: "#05070f" }}>
+                                <object data={item.paperPath} type="application/pdf" className="w-full h-full">
+                                  <p className="p-4 text-sm text-slate-400">
+                                    PDF preview unavailable.{" "}
+                                    <a href={item.paperPath} download className="text-blue-400 underline">Download</a>
+                                  </p>
+                                </object>
+                              </div>
+                            ) : (
+                              <div className="relative w-full rounded-lg overflow-hidden border border-blue-900/30 min-h-[320px]" style={{ background: "#05070f" }}>
+                                <Image
+                                  src={item.paperPath}
+                                  alt={`${item.title} paper`}
+                                  fill
+                                  sizes="(min-width: 1024px) 800px, 100vw"
+                                  className="object-contain"
+                                  priority
+                                />
+                              </div>
+                            )}
+                            <a href={item.paperPath} download className="text-sm text-blue-400 underline">
+                              Download file
+                            </a>
+                          </div>
+                        </details>
+                      )
                     )}
                   </div>
                 </article>
