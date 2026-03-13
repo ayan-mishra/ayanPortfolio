@@ -199,6 +199,73 @@ export default function Home() {
         </div>
       </section>
 
+      <section className="py-16 px-6">
+        <div className="max-w-6xl mx-auto">
+          <p className={`text-blue-400 text-xs uppercase tracking-[0.3em] mb-8 ${firaCode.className}`}>Primary Research</p>
+          <article
+            className="rounded-xl border p-6 sm:p-8 transition-all duration-300 mb-8"
+            style={{ background: "#0b0f1a", borderColor: "#1e3a8a" }}
+            onMouseEnter={(e) => {
+              (e.currentTarget as HTMLElement).style.borderColor = "#3b82f6";
+              (e.currentTarget as HTMLElement).style.boxShadow = "0 0 30px rgba(59,130,246,0.12)";
+            }}
+            onMouseLeave={(e) => {
+              (e.currentTarget as HTMLElement).style.borderColor = "#1e3a8a";
+              (e.currentTarget as HTMLElement).style.boxShadow = "none";
+            }}
+          >
+            <div className="flex flex-col gap-5">
+              <div className="flex items-start justify-between gap-4 flex-wrap">
+                <div className="space-y-2">
+                  <div className="flex flex-wrap items-center gap-2">
+                    <span
+                      className={`text-xs px-2 py-0.5 rounded border ${firaCode.className}`}
+                      style={{ borderColor: "#3b82f6", color: "#3b82f6", background: "#3b82f610" }}
+                    >
+                      {researchItems[0].status}
+                    </span>
+                    <span className="text-xs px-2 py-0.5 rounded text-slate-400" style={{ background: "#ffffff0a" }}>
+                      {researchItems[0].venue}
+                    </span>
+                    <span className={`text-xs px-2 py-0.5 rounded ${firaCode.className}`} style={{ color: "#60a5fa", background: "#3b82f610" }}>
+                      {researchItems[0].dataset}
+                    </span>
+                  </div>
+                  <h3 className="text-lg sm:text-xl font-medium text-white leading-snug">{researchItems[0].title}</h3>
+                </div>
+              </div>
+
+              <p className="text-slate-400 text-sm leading-relaxed">{researchItems[0].summary}</p>
+
+              {researchItems[0].metrics && (
+                <div className="flex gap-8 flex-wrap">
+                  {researchItems[0].metrics.map((m) => (
+                    <div key={m.label}>
+                      <p className="text-2xl font-semibold text-white">{m.value}</p>
+                      <p className={`text-xs text-slate-500 mt-0.5 ${firaCode.className}`}>{m.label}</p>
+                    </div>
+                  ))}
+                </div>
+              )}
+
+              {researchItems[0].abstract && (
+                <details className="rounded-lg border border-blue-900/30 px-4 py-3">
+                  <summary className="cursor-pointer text-sm font-medium text-blue-400 list-none flex justify-between items-center">
+                    Abstract
+                    <span>›</span>
+                  </summary>
+                  <div className="mt-3 text-sm text-slate-400 leading-relaxed space-y-3">
+                    {researchItems[0].abstract.split("\n").map((para, i) => (
+                      <p key={i}>{para.trim()}</p>
+                    ))}
+                  </div>
+                </details>
+              )}
+            </div>
+          </article>
+        </div>
+      </section>
+
       <section id="pipeline" className="py-16 px-6">
         <div className="max-w-6xl mx-auto">
           <p className={`text-blue-400 text-xs uppercase tracking-[0.3em] mb-12 ${firaCode.className}`}>Research Pipeline</p>
@@ -256,6 +323,7 @@ export default function Home() {
 
           <div className="grid gap-5">
             {researchItems
+              .slice(1)
               .filter((item) => item.category === activeTab)
               .map((item) => (
                 <article
