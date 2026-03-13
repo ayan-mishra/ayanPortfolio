@@ -3,6 +3,7 @@
 import { useState } from "react";
 import Image from "next/image";
 import { Fira_Code, Inter } from "next/font/google";
+import VitruvianViz from "@/components/ui/vitruvian-viz";
 
 const inter = Inter({ subsets: ["latin"] });
 const firaCode = Fira_Code({ weight: "500", subsets: ["latin"] });
@@ -97,47 +98,6 @@ const pipelineSteps = [
   { label: "Publication", detail: "Peer review" },
 ];
 
-function EcgViz() {
-  return (
-    <div className="relative w-full h-full flex items-center justify-center p-6">
-      <div className="absolute top-4 left-4">
-        <span className={`text-xs text-blue-400/60 ${firaCode.className}`}>ASCVD RISK MODEL</span>
-      </div>
-      <div className="absolute bottom-4 right-4">
-        <span className={`text-xs text-blue-400/60 ${firaCode.className}`}>n = 23,506</span>
-      </div>
-      <svg viewBox="0 0 400 160" className="w-full max-w-md">
-        {[0, 1, 2, 3].map((i) => (
-          <line key={i} x1="0" y1={i * 53} x2="400" y2={i * 53} stroke="#1e3a8a" strokeWidth="0.5" strokeDasharray="4 6" />
-        ))}
-        {[0, 1, 2, 3, 4, 5, 6, 7].map((i) => (
-          <line key={i} x1={i * 57} y1="0" x2={i * 57} y2="160" stroke="#1e3a8a" strokeWidth="0.5" strokeDasharray="4 6" />
-        ))}
-        <path
-          d="M 0,80 L 35,80 L 50,30 L 65,130 L 80,80 L 110,80 L 125,50 L 140,110 L 155,80 L 195,80 L 210,30 L 225,130 L 240,80 L 270,80 L 285,50 L 300,110 L 315,80 L 355,80 L 370,30 L 385,130 L 400,80"
-          fill="none"
-          stroke="#3b82f6"
-          strokeWidth="2"
-          strokeLinecap="round"
-          strokeLinejoin="round"
-          className="ecg-path"
-        />
-        <path
-          d="M 0,80 L 35,80 L 50,30 L 65,130 L 80,80 L 110,80 L 125,50 L 140,110 L 155,80 L 195,80 L 210,30 L 225,130 L 240,80 L 270,80 L 285,50 L 300,110 L 315,80 L 355,80 L 370,30 L 385,130 L 400,80"
-          fill="none"
-          stroke="#3b82f6"
-          strokeWidth="8"
-          strokeLinecap="round"
-          strokeLinejoin="round"
-          opacity="0.12"
-          className="ecg-path"
-          style={{ animationDelay: "0.04s" }}
-        />
-      </svg>
-    </div>
-  );
-}
-
 export default function Home() {
   const [activeTab, setActiveTab] = useState<"research" | "systems">("research");
 
@@ -198,7 +158,7 @@ export default function Home() {
             className="relative h-[280px] lg:h-[340px] rounded-2xl overflow-hidden border"
             style={{ background: "#0b0f1a", borderColor: "#1e3a8a55" }}
           >
-            <EcgViz />
+            <VitruvianViz />
           </div>
         </div>
       </section>
