@@ -171,69 +171,26 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="py-24 px-6">
-        <div className="max-w-3xl mx-auto text-center space-y-4">
-          <p className={`text-blue-400 text-xs uppercase tracking-[0.3em] ${firaCode.className}`}>Research Statement</p>
-          <p className="text-xl sm:text-2xl font-light text-slate-300 leading-relaxed">
-            My work focuses on applying machine learning to large-scale biomedical datasets to identify predictors of cardiovascular disease. I am particularly interested in improving risk prediction for underrepresented clinical populations.
-          </p>
-        </div>
-      </section>
-
       <section className="py-16 px-6">
-        <div className="max-w-6xl mx-auto">
-          <p className={`text-blue-400 text-xs uppercase tracking-[0.3em] mb-8 ${firaCode.className}`}>Primary Research Dataset</p>
-          <div
-            className="rounded-2xl border p-8 grid grid-cols-1 md:grid-cols-2 gap-10 items-center"
-            style={{ background: "#0b0f1a", borderColor: "#1e3a8a55" }}
-          >
-            <div className="space-y-5">
-              <div>
-                <h3 className="text-2xl font-semibold text-white">NHANES Dataset</h3>
-                <p className="text-blue-400 text-sm mt-1">National Health and Nutrition Examination Survey · CDC</p>
-              </div>
-              <p className="text-slate-400 leading-relaxed text-sm">
-                National longitudinal health dataset used to model cardiovascular risk across disability status in U.S. adults aged 40–79 across four survey cycles (2005–2018).
-              </p>
-              <ul className="space-y-2">
-                {[
-                  "23,506 participants analyzed",
-                  "Four survey cycles: 2005–2018",
-                  "Clinical, laboratory & questionnaire data",
-                  "CDC-backed nationally representative sample",
-                  "Pooled Cohort Equations applied for ASCVD estimation",
-                ].map((item) => (
-                  <li key={item} className="flex items-center gap-2.5 text-sm text-slate-300">
-                    <span className="w-1.5 h-1.5 rounded-full shrink-0" style={{ background: "#3b82f6" }} />
-                    {item}
-                  </li>
-                ))}
-              </ul>
-              <a href="#research" className={`text-blue-400 text-sm hover:text-blue-300 transition ${firaCode.className}`}>
-                View Research Project →
-              </a>
-            </div>
+        <div className="max-w-3xl mx-auto text-center space-y-8">
+          <div className="space-y-4">
+            <p className={`text-blue-400 text-xs uppercase tracking-[0.3em] ${firaCode.className}`}>Research Statement</p>
+            <p className="text-xl sm:text-2xl font-light text-slate-300 leading-relaxed">
+              My work focuses on applying machine learning to large-scale biomedical datasets to identify predictors of cardiovascular disease. I am particularly interested in improving risk prediction for underrepresented clinical populations.
+            </p>
+          </div>
 
-            <div
-              className="rounded-xl border p-5 space-y-4"
-              style={{ background: "#05070f", borderColor: "#1e3a8a44" }}
-            >
-              <p className={`text-xs text-blue-400/70 ${firaCode.className}`}>ASCVD RISK DISTRIBUTION</p>
-              {[
-                { label: "Disabled — mean 10yr risk", value: 14.98, max: 40, color: "#3b82f6" },
-                { label: "Non-disabled — mean 10yr risk", value: 7.66, max: 40, color: "#1d4ed8" },
-                { label: "ASCVD ≥7.5% — disabled", value: 33.2, max: 100, color: "#60a5fa" },
-                { label: "ASCVD ≥7.5% — non-disabled", value: 17.6, max: 100, color: "#93c5fd" },
-              ].map(({ label, value, max, color }) => (
-                <div key={label} className="space-y-1.5">
-                  <div className="flex justify-between text-xs">
-                    <span className="text-slate-400">{label}</span>
-                    <span style={{ color }}>{value}%</span>
-                  </div>
-                  <div className="w-full h-1.5 rounded-full" style={{ background: "#1e3a8a33" }}>
-                    <div className="h-1.5 rounded-full transition-all" style={{ width: `${(value / max) * 100}%`, background: color }} />
-                  </div>
-                </div>
+          <div className="space-y-4">
+            <p className={`text-blue-400 text-xs uppercase tracking-[0.3em] ${firaCode.className}`}>Research Interests</p>
+            <div className="flex flex-wrap gap-3 justify-center">
+              {researchInterests.map((interest) => (
+                <span
+                  key={interest}
+                  className={`text-sm px-4 py-2 rounded-full border transition-all duration-200 ${firaCode.className}`}
+                  style={{ background: "#0b0f1a", borderColor: "#1e3a8a", color: "#93c5fd" }}
+                >
+                  {interest}
+                </span>
               ))}
             </div>
           </div>
@@ -264,23 +221,6 @@ export default function Home() {
                 </div>
               ))}
             </div>
-          </div>
-        </div>
-      </section>
-
-      <section className="py-16 px-6">
-        <div className="max-w-6xl mx-auto">
-          <p className={`text-blue-400 text-xs uppercase tracking-[0.3em] mb-4 ${firaCode.className}`}>Research Interests</p>
-          <div className="flex flex-wrap gap-3">
-            {researchInterests.map((interest) => (
-              <span
-                key={interest}
-                className={`text-sm px-4 py-2 rounded-full border transition-all duration-200 ${firaCode.className}`}
-                style={{ background: "#0b0f1a", borderColor: "#1e3a8a", color: "#93c5fd" }}
-              >
-                {interest}
-              </span>
-            ))}
           </div>
         </div>
       </section>
@@ -483,11 +423,32 @@ export default function Home() {
       </section>
 
       <footer className="py-12 px-6 border-t" style={{ borderColor: "#1e3a8a33" }}>
-        <div className="max-w-6xl mx-auto flex items-center justify-between flex-wrap gap-4">
-          <span className={`text-sm text-slate-600 ${firaCode.className}`}>Ayan Mishra · Computational Health Research</span>
-          <a href="mailto:mishra.ayan1@gmail.com" className="text-sm text-blue-400 hover:text-blue-300 transition">
-            mishra.ayan1@gmail.com
-          </a>
+        <div className="max-w-6xl mx-auto">
+          <div className="flex items-center justify-between flex-wrap gap-4 mb-6">
+            <span className={`text-sm text-slate-600 ${firaCode.className}`}>Ayan Mishra · Computational Health Research</span>
+            <a href="mailto:mishra.ayan1@gmail.com" className="text-sm text-blue-400 hover:text-blue-300 transition">
+              mishra.ayan1@gmail.com
+            </a>
+          </div>
+          <div className="flex items-center gap-4 flex-wrap">
+            <a
+              href="https://github.com/ayan-mishra"
+              target="_blank"
+              rel="noreferrer"
+              className="text-sm text-blue-400 hover:text-blue-300 transition"
+            >
+              GitHub
+            </a>
+            <span className="text-slate-600">·</span>
+            <a
+              href="https://www.linkedin.com/in/ayanmishra-/"
+              target="_blank"
+              rel="noreferrer"
+              className="text-sm text-blue-400 hover:text-blue-300 transition"
+            >
+              LinkedIn
+            </a>
+          </div>
         </div>
       </footer>
     </main>
