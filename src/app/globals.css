@@ -127,3 +127,20 @@
     @apply font-sans;
   }
 }
+
+/* Hide Next.js dev indicator */
+nextjs-portal, 
+nextjs-dev-indicator,
+[data-nextjs-indicator],
+[data-nextjs-toast-wrapper] {
+  display: none !important;
+}
+
+@keyframes marquee {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
