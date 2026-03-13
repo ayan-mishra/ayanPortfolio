@@ -148,3 +148,20 @@ nextjs-dev-indicator,
   stroke-dashoffset: 900;
   animation: ecg 3s ease-in-out infinite;
 }
+
+@keyframes carousel {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+.carousel-inner {
+  animation: carousel 40s linear infinite;
+}
+
+.carousel-inner:hover {
+  animation-play-state: paused;
+}

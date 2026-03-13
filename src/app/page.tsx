@@ -463,34 +463,30 @@ export default function Home() {
         </div>
       </section>
 
-      <section id="systems" className="py-16 px-6">
-        <div className="max-w-6xl mx-auto space-y-8">
-          <p className={`text-blue-400 text-xs uppercase tracking-[0.3em] ${firaCode.className}`}>Tools &amp; Technology</p>
-          <div className="space-y-6">
-            {techCategories.map(({ label, items }) => (
-              <div key={label}>
-                <p className={`text-xs text-slate-500 mb-3 uppercase tracking-widest ${firaCode.className}`}>{label}</p>
-                <div className="flex flex-wrap gap-2">
-                  {items.map((item) => (
-                    <span
-                      key={item}
-                      className={`text-sm px-3 py-1.5 rounded-full border transition-all duration-200 cursor-default ${firaCode.className}`}
-                      style={{ background: "#0b0f1a", borderColor: "#1e3a8a", color: "#93c5fd" }}
-                      onMouseEnter={(e) => {
-                        (e.currentTarget as HTMLElement).style.borderColor = "#3b82f6";
-                        (e.currentTarget as HTMLElement).style.boxShadow = "0 0 12px rgba(59,130,246,0.3)";
-                      }}
-                      onMouseLeave={(e) => {
-                        (e.currentTarget as HTMLElement).style.borderColor = "#1e3a8a";
-                        (e.currentTarget as HTMLElement).style.boxShadow = "none";
-                      }}
-                    >
-                      {item}
-                    </span>
-                  ))}
+      <section className="py-12 px-6">
+        <div className="max-w-full mx-auto overflow-hidden">
+          <p className={`text-blue-400 text-xs uppercase tracking-[0.3em] mb-6 px-6 ${firaCode.className}`}>Tools &amp; Technology</p>
+          <div className="relative overflow-hidden group">
+            <div className="carousel-inner flex gap-3 w-max">
+              {[...techCategories, ...techCategories].map(({ label, items }, idx) => (
+                <div
+                  key={`${label}-${idx}`}
+                  className="rounded-xl border p-4 whitespace-nowrap shrink-0 transition-all duration-200"
+                  style={{ background: "#0b0f1a", borderColor: "#1e3a8a" }}
+                  onMouseEnter={(e) => {
+                    (e.currentTarget as HTMLElement).style.borderColor = "#3b82f6";
+                    (e.currentTarget as HTMLElement).style.boxShadow = "0 0 20px rgba(59,130,246,0.2)";
+                  }}
+                  onMouseLeave={(e) => {
+                    (e.currentTarget as HTMLElement).style.borderColor = "#1e3a8a";
+                    (e.currentTarget as HTMLElement).style.boxShadow = "none";
+                  }}
+                >
+                  <p className={`text-xs text-blue-400 mb-2 uppercase tracking-wide ${firaCode.className}`}>{label}</p>
+                  <p className={`text-sm text-slate-400 leading-relaxed ${firaCode.className}`}>{items.join(" • ")}</p>
                 </div>
-              </div>
-            ))}
+              ))}
+            </div>
           </div>
         </div>
       </section>
