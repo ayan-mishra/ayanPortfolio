@@ -165,8 +165,10 @@ export default function Home() {
             </div>
           </div>
 
-          <div className="relative h-screen lg:h-[500px] w-full -mr-6 lg:-mr-16">
-            <RotatingEarth width={900} height={500} />
+          <div className="relative h-screen lg:h-[600px] w-full -mr-6 lg:-mr-16 flex items-center justify-center">
+            <div className="w-[600px] h-[600px]">
+              <RotatingEarth width={600} height={600} />
+            </div>
           </div>
         </div>
       </section>
