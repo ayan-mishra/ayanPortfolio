@@ -21,7 +21,8 @@ type ResearchItem = {
   dataset?: string;
   metrics?: { label: string; value: string }[];
   downloadOnly?: boolean;
-  domain?: "cardiovascular" | "imaging" | "mental-health" | "systems";
+  domain?: "cardiovascular" | "imaging" | "mental-health" | "systems" | "oncology";
+  censored?: boolean;
 };
 
 const researchItems: ResearchItem[] = [
@@ -40,8 +41,24 @@ Results: Among participants, 7,928 (33.7% unweighted) were classified as having 
 Conclusions: Adults with disability have substantially higher predicted ASCVD risk as estimated by standard risk prediction models. Disability also predicts higher odds of clinically meaningful ASCVD thresholds (>=7.5% and >=20%), with predicted probabilities at age 60 of 33.2% versus 17.6%. These findings highlight disability as an underrecognized marker of elevated cardiovascular risk and underscore the importance of inclusive prevention strategies.`,
     metrics: [
       { label: "Study Population", value: "23,506" },
-      { label: "Disability Prevalence", value: "33.7%" },
-      { label: "Mean Risk Delta", value: "+7.32%" },
+      { label: "OR for ASCVD ≥7.5%", value: "2.33×" },
+      { label: "OR for ASCVD ≥20%", value: "4.22×" },
+    ],
+  },
+  {
+    title: "Transcriptional Regulation of Immune Evasion in Solid Tumors",
+    venue: "Active Research",
+    status: "Ongoing",
+    category: "research",
+    domain: "oncology",
+    censored: true,
+    summary:
+      "Single-cell transcriptomic screen identifying a transcription factor that suppresses immune recognition in malignant cells. Results withheld — manuscript in preparation.",
+    techStack: ["scRNA-seq", "GSEA", "Survival Analysis", "Drug Repurposing", "R", "Python"],
+    metrics: [
+      { label: "Transcription Factors Screened", value: "899" },
+      { label: "Malignant Cells Analyzed", value: "1,252" },
+      { label: "Cancer Types Validated", value: "10" },
     ],
   },
   {
@@ -108,16 +125,16 @@ const pipelineSteps = [
   { label: "Dataset Acquisition", detail: "Finding credible dataset", icon: "01", status: "complete" },
   { label: "Data Cleaning", detail: "Clinical variable extraction", icon: "02", status: "complete" },
   { label: "Feature Engineering", detail: "Risk factor modeling", icon: "03", status: "complete" },
-  { label: "Model Training", detail: "Regression pipeline", icon: "04", status: "active" },
-  { label: "Validation", detail: "Survey-weighted analysis", icon: "05", status: "active" },
+  { label: "Model Training", detail: "Regression pipeline", icon: "04", status: "complete" },
+  { label: "Validation", detail: "Survey-weighted analysis", icon: "05", status: "complete" },
   { label: "Publication", detail: "Peer review", icon: "06", status: "upcoming" },
 ];
 
 const typewriterPhrases = [
-  "Published · AJPM",
   "23,506 patients studied",
-  "3 active research projects",
+  "1 active research project",
   "ML + Epidemiology",
+  "Tumor Immunology",
 ];
 
 // Utility: get domain accent color
@@ -127,6 +144,7 @@ function getDomainBorderColor(domain?: string) {
     case "imaging": return "#a855f7";
     case "mental-health": return "#f59e0b";
     case "systems": return "#06b6d4";
+    case "oncology": return "#10b981";
     default: return "#3b82f6";
   }
 }
@@ -390,6 +408,11 @@ export default function Home() {
   const toggleCardAbstract = (title: string) => {
     setCardAbstractOpen((prev) => ({ ...prev, [title]: !prev[title] }));
   };
+
+  // Scroll to top on load
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
 
   const handleLoadingDone = useCallback(() => setLoaded(true), []);
 
@@ -882,6 +905,70 @@ export default function Home() {
               .filter((item) => item.category === activeTab)
               .map((item, idx) => {
                 const domainColor = getDomainBorderColor(item.domain);
+                if (item.censored) {
+                  return (
+                    <article
+                      key={item.title}
+                      ref={(el) => setCardRef(item.title, el)}
+                      className="rounded-xl border p-6 sm:p-8 transition-all duration-300 relative overflow-hidden"
+                      style={{ background: "#0b0f1a", borderColor: "#10b98133" }}
+                    >
+                      {/* Green left accent for active/ongoing */}
+                      <div className="absolute left-0 top-0 bottom-0 w-[3px] rounded-l-xl" style={{ background: "#10b981" }} />
+                      <div className="flex flex-col gap-4 pl-2">
+                        <div className="flex flex-wrap items-center gap-2">
+                          <span
+                            className={`text-xs px-2 py-0.5 rounded border flex items-center gap-1.5 ${firaCode.className}`}
+                            style={{ borderColor: "#10b98160", color: "#10b981", background: "#10b98110" }}
+                          >
+                            <span className="relative flex h-1.5 w-1.5">
+                              <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75" />
+                              <span className="relative inline-flex rounded-full h-1.5 w-1.5 bg-emerald-400" />
+                            </span>
+                            Ongoing
+                          </span>
+                          <span className="text-xs px-2 py-0.5 rounded text-slate-400" style={{ background: "#ffffff0a" }}>
+                            Active Research
+                          </span>
+                          <span className={`text-xs px-2 py-0.5 rounded ${firaCode.className}`} style={{ color: "#6ee7b7", background: "#10b98110" }}>
+                            Tumor Immunology
+                          </span>
+                        </div>
+                        <h3 className="text-lg sm:text-xl font-medium text-white leading-snug">{item.title}</h3>
+                        <p className="text-slate-400 text-sm leading-relaxed">{item.summary}</p>
+                        {/* Metrics */}
+                        <div className="flex gap-8 flex-wrap">
+                          {item.metrics?.map((m) => (
+                            <div key={m.label}>
+                              <p className="text-3xl font-bold text-white" style={{ textShadow: "0 0 20px rgba(16,185,129,0.25)" }}>{m.value}</p>
+                              <p className={`text-xs text-slate-500 mt-0.5 ${firaCode.className}`}>{m.label}</p>
+                            </div>
+                          ))}
+                        </div>
+                        {/* Censored redacted block */}
+                        <div className="rounded-lg border p-4 space-y-3 relative overflow-hidden" style={{ borderColor: "#10b98133", background: "#05100a" }}>
+                          <p className={`text-xs uppercase tracking-widest mb-3 ${firaCode.className}`} style={{ color: "#10b98188" }}>Findings — Results Withheld</p>
+                          {[85, 70, 90, 55, 75].map((w, i) => (
+                            <div key={i} className="h-3 rounded" style={{ width: `${w}%`, background: "#10b98118", position: "relative", overflow: "hidden" }}>
+                              <div className="absolute inset-0 rounded" style={{ background: "repeating-linear-gradient(90deg, #10b98122 0px, #10b98122 8px, transparent 8px, transparent 14px)" }} />
+                            </div>
+                          ))}
+                          <p className={`text-xs mt-2 ${firaCode.className}`} style={{ color: "#10b98155" }}>Manuscript in preparation · Not for citation</p>
+                        </div>
+                        {/* Tech stack */}
+                        {item.techStack && (
+                          <div className="flex flex-wrap gap-2">
+                            {item.techStack.map((t) => (
+                              <span key={t} className={`text-xs px-2.5 py-1 rounded ${firaCode.className}`} style={getTechTagStyle(t)}>
+                                {t}
+                              </span>
+                            ))}
+                          </div>
+                        )}
+                      </div>
+                    </article>
+                  );
+                }
                 return (
                   <article
                     key={item.title}
