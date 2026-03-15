@@ -125,7 +125,17 @@
   }
   html {
     @apply font-sans;
+    scroll-behavior: auto;
   }
+}
+
+::selection {
+  background: #06b6d440;
+  color: #e2f8ff;
+}
+::-moz-selection {
+  background: #06b6d440;
+  color: #e2f8ff;
 }
 
 nextjs-portal,
