@@ -18,8 +18,8 @@ export const viewport: Viewport = {
 };
 
 export const metadata: Metadata = {
-  title: "Ayan Mishra | Researcher, Engineer, Builder",
-  description: "Exploring the intersection of computation, biology, and medicine—building systems that turn data into actionable insight.",
+  title: "Ayan Mishra | Computational Biology & Data Research",
+  description: "Portfolio of Ayan Mishra, a high school researcher exploring biomedical datasets, computational biology, and medical data analysis.",
   icons: {
     icon: "/favicon.ico",
   },

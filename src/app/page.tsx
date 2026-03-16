@@ -4,6 +4,7 @@ import { useState, useEffect, useRef, useCallback } from "react";
 import Image from "next/image";
 import { Fira_Code, Inter } from "next/font/google";
 import RotatingEarth from "@/components/ui/wireframe-dotted-globe";
+import { Dna, Database, BarChart2 } from "lucide-react";
 
 const inter = Inter({ subsets: ["latin"] });
 const firaCode = Fira_Code({ weight: "500", subsets: ["latin"] });
@@ -96,14 +97,60 @@ Conclusions: Adults with disability have substantially higher predicted ASCVD ri
   },
   {
     title: "Momentum",
-    venue: "Product Launch",
+    venue: "Engineering Project",
     category: "systems",
     domain: "systems",
     summary:
-      "AI-powered habit tracking and goal execution platform. Combines gamification (XP, levels, streaks), LLM-based coaching, and behavioral analytics into a full-stack productivity system built for sustained behavior change.",
+      "Full-stack application designed to manage structured workflows and long-term project tracking. Built to explore system design, user data structures, and scalable backend architecture. Integrates LLM-based assistance and behavioral analytics to support sustained task execution.",
     link: "https://momentum-frontend-b1je.onrender.com/",
     techStack: ["React", "TypeScript", "Node.js", "Tailwind CSS", "REST APIs", "LLM Integration"],
   },
+];
+
+const researchOverviewCards = [
+  {
+    icon: BarChart2,
+    title: "NHANES Cardiovascular Risk Analysis",
+    description:
+      "Research project analyzing cardiovascular risk indicators using the National Health and Nutrition Examination Survey (NHANES) dataset. The project focuses on identifying relationships between physiological markers and potential cardiovascular outcomes through statistical analysis and data exploration.",
+    methods: ["Python", "Pandas", "NumPy", "Data cleaning and preprocessing", "Statistical analysis"],
+    note: "Dataset visualizations and charts.",
+  },
+  {
+    icon: Database,
+    title: "Biomedical Data Exploration",
+    description:
+      "Exploration of large-scale biomedical and population health datasets to investigate patterns related to disease risk and clinical outcomes. This work focuses on building reproducible analysis pipelines for cleaning, analyzing, and visualizing structured medical data.",
+    methods: ["Python data analysis", "Dataset preprocessing", "Visualization", "Exploratory analysis"],
+    note: null,
+  },
+  {
+    icon: Dna,
+    title: "Computational Biology Interests",
+    description:
+      "Interested in applying computational techniques to biological problems including genomics, disease modeling, and biomedical literature analysis. Future work will explore how machine learning and large-scale data analysis can assist biological discovery.",
+    methods: ["Genomics", "Disease risk modeling", "Biomedical datasets", "Scientific data visualization"],
+    note: null,
+  },
+];
+
+const skillCategories = [
+  { label: "Programming", items: ["Python", "JavaScript", "Data analysis scripting"], accentColor: "#06b6d4" },
+  { label: "Scientific Computing", items: ["Pandas", "NumPy", "Data preprocessing", "Statistical analysis"], accentColor: "#a855f7" },
+  { label: "Machine Learning", items: ["PyTorch", "Scikit-learn", "Stable Diffusion", "DenseNet", "Hugging Face"], accentColor: "#f59e0b" },
+  { label: "Datasets & Methods", items: ["NHANES", "YRBS", "Pooled Cohort Equations", "Epidemiology", "Statistical Modeling"], accentColor: "#10b981" },
+  { label: "Engineering", items: ["Full-stack development", "REST APIs", "Git / version control", "Web application architecture"], accentColor: "#3b82f6" },
+];
+
+const researchInterestAreas = [
+  "Computational biology",
+  "Biomedical data analysis",
+  "Disease risk modeling",
+  "Clinical datasets",
+  "Genomic data analysis",
+  "Population health",
+  "Health disparities",
+  "Preventive medicine",
 ];
 
 const researchInterests = [
@@ -319,7 +366,7 @@ export default function Home() {
 
   // #2 Active section detection
   useEffect(() => {
-    const sections = ["research", "pipeline", "systems"];
+    const sections = ["research", "projects", "skills"];
     const observers: IntersectionObserver[] = [];
     sections.forEach((id) => {
       const el = document.getElementById(id);
@@ -473,20 +520,20 @@ export default function Home() {
           </div>
           <div className="flex items-center gap-4">
             <div className={`flex gap-6 text-sm text-slate-400 ${firaCode.className}`}>
-              {["research", "pipeline", "systems"].map((section) => (
+              {[["home", "Home"], ["research", "Research"], ["projects", "Projects"], ["skills", "Skills"]].map(([id, label]) => (
                 <a
-                  key={section}
-                  href={`#${section}`}
+                  key={id}
+                  href={`#${id}`}
                   className="transition capitalize"
                   style={{
-                    color: activeSection === section ? "#60a5fa" : undefined,
-                    borderBottom: activeSection === section ? "1px solid #3b82f6" : "1px solid transparent",
+                    color: activeSection === id ? "#60a5fa" : undefined,
+                    borderBottom: activeSection === id ? "1px solid #3b82f6" : "1px solid transparent",
                     paddingBottom: "2px",
                   }}
                   onMouseEnter={(e) => { (e.currentTarget as HTMLElement).style.color = "#60a5fa"; }}
-                  onMouseLeave={(e) => { (e.currentTarget as HTMLElement).style.color = activeSection === section ? "#60a5fa" : ""; }}
+                  onMouseLeave={(e) => { (e.currentTarget as HTMLElement).style.color = activeSection === id ? "#60a5fa" : ""; }}
                 >
-                  {section}
+                  {label}
                 </a>
               ))}
             </div>
@@ -511,7 +558,7 @@ export default function Home() {
       </nav>
 
       {/* HERO SECTION */}
-      <section className="relative min-h-screen flex items-center pt-20 px-6 overflow-hidden">
+      <section id="home" className="relative min-h-screen flex items-center pt-20 px-6 overflow-hidden">
         {/* #14 Large watermark number */}
         <div
           className={`absolute pointer-events-none select-none font-bold text-white ${firaCode.className}`}
@@ -544,7 +591,7 @@ export default function Home() {
         <div className="max-w-6xl mx-auto w-full grid grid-cols-1 lg:grid-cols-2 gap-16 items-center relative z-10">
           <div className="space-y-7">
             <div className="space-y-3">
-              <p className={`text-blue-400 text-xs uppercase tracking-[0.3em] ${firaCode.className}`}>Computational Health Research</p>
+              <p className={`text-blue-400 text-xs uppercase tracking-[0.3em] ${firaCode.className}`}>Computational Biology &amp; Medical Data Research</p>
               <h1 className="text-5xl sm:text-6xl lg:text-7xl font-light tracking-tight text-white leading-[1.08]">
                 Ayan<br />
                 {/* #9 Gradient text on "Mishra" */}
@@ -560,12 +607,9 @@ export default function Home() {
                   Mishra
                 </span>
               </h1>
-              <p className="text-slate-400 text-base font-light">AI &amp; Biomedical Data Science</p>
-              {/* #12 Currently researching badge */}
-              <div className="flex items-center gap-2 mt-1">
-                <span className="w-1.5 h-1.5 rounded-full bg-green-400 animate-pulse inline-block" />
-                <span className={`text-xs text-slate-500 ${firaCode.className}`}>Researching ASCVD risk in disabled populations</span>
-              </div>
+              <p className="text-slate-300 text-base font-light leading-relaxed max-w-lg">
+                High school researcher exploring biomedical datasets, clinical risk modeling, and computational approaches to understanding disease.
+              </p>
             </div>
 
             {/* #6 Typewriter credentials */}
@@ -576,7 +620,7 @@ export default function Home() {
             </div>
 
             <p className="text-slate-400 leading-relaxed max-w-lg">
-              Investigating cardiovascular risk factors using large-scale clinical and epidemiological datasets.
+              I am interested in using large-scale biological and health datasets to study disease risk and population health. My work focuses on combining programming, statistical analysis, and biomedical data to explore patterns in clinical and genomic datasets.
             </p>
 
             {/* #15 Colored research interest pills */}
@@ -604,11 +648,13 @@ export default function Home() {
                 View Research
               </a>
               <a
-                href="#systems"
+                href="https://github.com/ayan-mishra"
+                target="_blank"
+                rel="noreferrer"
                 className={`px-5 py-2.5 text-sm font-medium rounded border transition-all hover:border-blue-500 hover:text-blue-200 ${firaCode.className}`}
                 style={{ borderColor: "#1e3a8a", color: "#93c5fd" }}
               >
-                View Systems
+                GitHub
               </a>
             </div>
           </div>
@@ -668,6 +714,60 @@ export default function Home() {
             >
               &rdquo;
             </span>
+          </div>
+        </div>
+      </section>
+
+      {/* RESEARCH OVERVIEW — 3 cards */}
+      <section id="research" className="py-20 px-6">
+        <div className="max-w-6xl mx-auto space-y-10">
+          <div>
+            <p className={`text-blue-400 text-xs uppercase tracking-[0.3em] mb-2 ${firaCode.className}`}>Research</p>
+            <h2 className="text-3xl sm:text-4xl font-light text-white">Research Focus</h2>
+          </div>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+            {researchOverviewCards.map((card) => {
+              const Icon = card.icon;
+              return (
+                <div
+                  key={card.title}
+                  className="rounded-xl border p-6 flex flex-col gap-5 transition-all duration-300 cursor-default"
+                  style={{ background: "#0b0f1a", borderColor: "#1e3a8a" }}
+                  onMouseEnter={(e) => {
+                    (e.currentTarget as HTMLElement).style.borderColor = "#3b82f6";
+                    (e.currentTarget as HTMLElement).style.boxShadow = "0 4px 32px rgba(59,130,246,0.15)";
+                    (e.currentTarget as HTMLElement).style.transform = "translateY(-2px)";
+                  }}
+                  onMouseLeave={(e) => {
+                    (e.currentTarget as HTMLElement).style.borderColor = "#1e3a8a";
+                    (e.currentTarget as HTMLElement).style.boxShadow = "none";
+                    (e.currentTarget as HTMLElement).style.transform = "translateY(0)";
+                  }}
+                >
+                  <div
+                    className="w-10 h-10 rounded-lg flex items-center justify-center shrink-0"
+                    style={{ background: "#1e3a8a33", border: "1px solid #1e3a8a" }}
+                  >
+                    <Icon size={18} style={{ color: "#3b82f6" }} />
+                  </div>
+                  <div className="space-y-2">
+                    <h3 className="text-base font-medium text-white leading-snug">{card.title}</h3>
+                    <p className="text-sm text-slate-400 leading-relaxed">{card.description}</p>
+                  </div>
+                  <div className="mt-auto space-y-2">
+                    <p className={`text-xs text-blue-400 uppercase tracking-wide ${firaCode.className}`}>Key Methods</p>
+                    <ul className="space-y-1">
+                      {card.methods.map((m) => (
+                        <li key={m} className={`text-xs text-slate-400 ${firaCode.className}`}>• {m}</li>
+                      ))}
+                    </ul>
+                    {card.note && (
+                      <p className={`text-xs text-slate-600 mt-3 ${firaCode.className}`}>{card.note}</p>
+                    )}
+                  </div>
+                </div>
+              );
+            })}
           </div>
         </div>
       </section>
@@ -871,38 +971,18 @@ export default function Home() {
       {/* #43 Section gradient divider */}
       <div style={{ height: "1px", background: "linear-gradient(90deg, transparent, #1e3a8a44 20%, #3b82f644 50%, #1e3a8a44 80%, transparent)" }} />
 
-      {/* RESEARCH & SYSTEMS GRID */}
-      <section id="research" className="py-16 px-6">
+      {/* ALL RESEARCH PAPERS */}
+      <section className="py-16 px-6">
         <div className="max-w-6xl mx-auto space-y-8">
-          <div className="flex items-end justify-between flex-wrap gap-4">
-            <div>
-              <p className={`text-blue-400 text-xs uppercase tracking-[0.3em] mb-2 ${firaCode.className}`}>Work</p>
-              <h2 className="text-3xl sm:text-4xl font-light text-white">Research &amp; Systems</h2>
-            </div>
-            <div
-              className={`flex gap-1 rounded-lg p-1 ${firaCode.className}`}
-              style={{ background: "#0b0f1a", border: "1px solid #1e3a8a" }}
-            >
-              {(["research", "systems"] as const).map((tab) => (
-                <button
-                  key={tab}
-                  onClick={() => setActiveTab(tab)}
-                  className="px-4 py-1.5 rounded text-sm capitalize transition"
-                  style={{
-                    background: activeTab === tab ? "#1e3a8a" : "transparent",
-                    color: activeTab === tab ? "#fff" : "#60a5fa",
-                  }}
-                >
-                  {tab}
-                </button>
-              ))}
-            </div>
+          <div>
+            <p className={`text-blue-400 text-xs uppercase tracking-[0.3em] mb-2 ${firaCode.className}`}>All Research</p>
+            <h2 className="text-3xl sm:text-4xl font-light text-white">Research Projects</h2>
           </div>
 
           <div className="grid gap-5">
             {researchItems
               .slice(1)
-              .filter((item) => item.category === activeTab)
+              .filter((item) => item.category === "research")
               .map((item, idx) => {
                 const domainColor = getDomainBorderColor(item.domain);
                 if (item.censored) {
@@ -1152,63 +1232,146 @@ export default function Home() {
       {/* #43 Section gradient divider */}
       <div style={{ height: "1px", background: "linear-gradient(90deg, transparent, #1e3a8a44 20%, #3b82f644 50%, #1e3a8a44 80%, transparent)" }} />
 
-      {/* TECH CAROUSEL — redesigned (#36-40) */}
-      <section id="systems" className="py-12 px-6">
-        <div className="max-w-full mx-auto overflow-hidden">
-          <p className={`text-blue-400 text-xs uppercase tracking-[0.3em] mb-6 px-6 ${firaCode.className}`}>Tools &amp; Technology</p>
-          {/* #40 Edge fades */}
-          <div className="relative overflow-hidden group carousel-container">
-            <div className="carousel-inner flex gap-4 w-max">
-              {[...techCategories, ...techCategories].map(({ label, items, accentColor }, idx) => (
-                <div
-                  key={`${label}-${idx}`}
-                  className="rounded-xl border shrink-0 overflow-hidden transition-all duration-200"
-                  style={{
-                    background: "#0b0f1a",
-                    borderColor: "#1e3a8a",
-                    minWidth: "220px",
-                  }}
-                  onMouseEnter={(e) => {
-                    (e.currentTarget as HTMLElement).style.borderColor = accentColor;
-                    (e.currentTarget as HTMLElement).style.boxShadow = `0 0 20px ${accentColor}33`;
-                  }}
-                  onMouseLeave={(e) => {
-                    (e.currentTarget as HTMLElement).style.borderColor = "#1e3a8a";
-                    (e.currentTarget as HTMLElement).style.boxShadow = "none";
-                  }}
-                >
-                  {/* #36 Colored top accent bar */}
-                  <div className="h-[3px] w-full" style={{ background: accentColor }} />
-                  <div className="p-4">
-                    <div className="flex items-center justify-between mb-3">
-                      {/* #37 Category label */}
-                      <p className={`text-xs uppercase tracking-wide ${firaCode.className}`} style={{ color: accentColor }}>
-                        {label}
-                      </p>
-                      {/* #39 Tool count badge */}
-                      <span
-                        className={`text-xs px-1.5 py-0.5 rounded ${firaCode.className}`}
-                        style={{ background: "#ffffff08", color: "#475569" }}
-                      >
-                        {items.length} tools
-                      </span>
+      {/* SOFTWARE & ENGINEERING PROJECTS */}
+      <section id="projects" className="py-16 px-6">
+        <div className="max-w-6xl mx-auto space-y-8">
+          <div>
+            <p className={`text-blue-400 text-xs uppercase tracking-[0.3em] mb-2 ${firaCode.className}`}>Engineering</p>
+            <h2 className="text-3xl sm:text-4xl font-light text-white">Software &amp; Engineering Projects</h2>
+          </div>
+          <div className="grid gap-5">
+            {researchItems
+              .filter((item) => item.category === "systems")
+              .map((item) => {
+                const domainColor = getDomainBorderColor(item.domain);
+                return (
+                  <article
+                    key={item.title}
+                    className="rounded-xl border p-6 sm:p-8 transition-all duration-300 relative overflow-hidden"
+                    style={{ background: "#0b0f1a", borderColor: "#1e3a8a" }}
+                    onMouseEnter={(e) => {
+                      (e.currentTarget as HTMLElement).style.borderColor = "#3b82f6";
+                      (e.currentTarget as HTMLElement).style.boxShadow = "0 0 30px rgba(59,130,246,0.12)";
+                      (e.currentTarget as HTMLElement).style.transform = "translateY(-2px)";
+                    }}
+                    onMouseLeave={(e) => {
+                      (e.currentTarget as HTMLElement).style.borderColor = "#1e3a8a";
+                      (e.currentTarget as HTMLElement).style.boxShadow = "none";
+                      (e.currentTarget as HTMLElement).style.transform = "translateY(0)";
+                    }}
+                  >
+                    <div className="absolute left-0 top-0 bottom-0 w-[3px] rounded-l-xl" style={{ background: domainColor }} />
+                    <div className="flex flex-col gap-5 pl-2">
+                      <div className="flex items-start justify-between gap-4 flex-wrap">
+                        <div className="space-y-2">
+                          <div className="flex flex-wrap items-center gap-2">
+                            {item.venue && (
+                              <span className="text-xs px-2 py-0.5 rounded text-slate-400" style={{ background: "#ffffff0a" }}>
+                                {item.venue}
+                              </span>
+                            )}
+                          </div>
+                          <h3 className="text-lg sm:text-xl font-medium text-white leading-snug">{item.title}</h3>
+                        </div>
+                        {item.link && (
+                          <a
+                            href={item.link}
+                            target="_blank"
+                            rel="noreferrer"
+                            className={`text-sm text-blue-400 hover:text-blue-300 transition shrink-0 border border-blue-900 rounded px-3 py-1 hover:border-blue-500 ${firaCode.className}`}
+                          >
+                            Visit →
+                          </a>
+                        )}
+                      </div>
+                      <p className="text-slate-400 text-sm leading-relaxed">{item.summary}</p>
+                      {item.techStack && (
+                        <div className="flex flex-wrap gap-2">
+                          {item.techStack.map((t) => (
+                            <span key={t} className={`text-xs px-2.5 py-1 rounded ${firaCode.className}`} style={getTechTagStyle(t)}>
+                              {t}
+                            </span>
+                          ))}
+                        </div>
+                      )}
                     </div>
-                    {/* #38 Item bubbles */}
-                    <div className="flex flex-wrap gap-1">
-                      {items.map((item) => (
-                        <span
-                          key={item}
-                          className={`text-xs px-2 py-0.5 rounded ${firaCode.className}`}
-                          style={{ background: "#ffffff06", color: "#94a3b8", border: "1px solid #1e293b" }}
-                        >
-                          {item}
-                        </span>
-                      ))}
-                    </div>
+                  </article>
+                );
+              })}
+          </div>
+        </div>
+      </section>
+
+      {/* #43 Section gradient divider */}
+      <div style={{ height: "1px", background: "linear-gradient(90deg, transparent, #1e3a8a44 20%, #3b82f644 50%, #1e3a8a44 80%, transparent)" }} />
+
+      {/* TECHNICAL SKILLS */}
+      <section id="skills" className="py-16 px-6">
+        <div className="max-w-6xl mx-auto space-y-8">
+          <div>
+            <p className={`text-blue-400 text-xs uppercase tracking-[0.3em] mb-2 ${firaCode.className}`}>Technical Skills</p>
+            <h2 className="text-3xl sm:text-4xl font-light text-white">Tools &amp; Technology</h2>
+          </div>
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
+            {skillCategories.map(({ label, items, accentColor }) => (
+              <div
+                key={label}
+                className="rounded-xl border overflow-hidden transition-all duration-200"
+                style={{ background: "#0b0f1a", borderColor: "#1e3a8a" }}
+                onMouseEnter={(e) => {
+                  (e.currentTarget as HTMLElement).style.borderColor = accentColor;
+                  (e.currentTarget as HTMLElement).style.boxShadow = `0 0 20px ${accentColor}33`;
+                }}
+                onMouseLeave={(e) => {
+                  (e.currentTarget as HTMLElement).style.borderColor = "#1e3a8a";
+                  (e.currentTarget as HTMLElement).style.boxShadow = "none";
+                }}
+              >
+                <div className="h-[3px] w-full" style={{ background: accentColor }} />
+                <div className="p-5">
+                  <div className="flex items-center justify-between mb-3">
+                    <p className={`text-xs uppercase tracking-wide ${firaCode.className}`} style={{ color: accentColor }}>{label}</p>
+                    <span className={`text-xs px-1.5 py-0.5 rounded ${firaCode.className}`} style={{ background: "#ffffff08", color: "#475569" }}>
+                      {items.length} tools
+                    </span>
                   </div>
+                  <ul className="space-y-1.5">
+                    {items.map((item) => (
+                      <li key={item} className={`text-sm text-slate-400 ${firaCode.className}`}>• {item}</li>
+                    ))}
+                  </ul>
                 </div>
-              ))}
-            </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* #43 Section gradient divider */}
+      <div style={{ height: "1px", background: "linear-gradient(90deg, transparent, #1e3a8a44 20%, #3b82f644 50%, #1e3a8a44 80%, transparent)" }} />
+
+      {/* RESEARCH INTERESTS */}
+      <section className="py-16 px-6">
+        <div className="max-w-4xl mx-auto space-y-8">
+          <div className="text-center space-y-4">
+            <p className={`text-blue-400 text-xs uppercase tracking-[0.3em] ${firaCode.className}`}>Research Interests</p>
+            <h2 className="text-3xl sm:text-4xl font-light text-white">Areas of Interest</h2>
+            <p className="text-slate-400 leading-relaxed max-w-2xl mx-auto">
+              My interests lie at the intersection of medicine, biology, and computation. I am particularly interested in how large biomedical datasets can be analyzed to better understand disease risk and population health.
+            </p>
+          </div>
+          <div className="flex flex-wrap gap-3 justify-center">
+            {researchInterestAreas.map((interest) => (
+              <span
+                key={interest}
+                className={`text-sm px-4 py-2 rounded-full border transition-all duration-200 ${firaCode.className}`}
+                style={{ background: "#0b0f1a", borderColor: "#1e3a8a", color: "#93c5fd" }}
+                onMouseEnter={(e) => { (e.currentTarget as HTMLElement).style.transform = "scale(1.05)"; }}
+                onMouseLeave={(e) => { (e.currentTarget as HTMLElement).style.transform = "scale(1)"; }}
+              >
+                {interest}
+              </span>
+            ))}
           </div>
         </div>
       </section>
@@ -1245,6 +1408,7 @@ export default function Home() {
 
       {/* FOOTER */}
       <footer
+        id="contact"
         className="py-12 px-6 relative"
         style={{ borderTop: "none" }}
       >
@@ -1255,7 +1419,7 @@ export default function Home() {
         />
         <div className="max-w-6xl mx-auto">
           <div className="flex items-center justify-between flex-wrap gap-4 mb-6">
-            <span className={`text-sm text-slate-600 ${firaCode.className}`}>Ayan Mishra · Computational Health Research</span>
+            <span className={`text-sm text-slate-600 ${firaCode.className}`}>Ayan Mishra · Computational Biology &amp; Medical Data Research</span>
             <a href="mailto:mishra.ayan1@gmail.com" className="text-sm text-blue-400 hover:text-blue-300 transition">
               mishra.ayan1@gmail.com
             </a>
